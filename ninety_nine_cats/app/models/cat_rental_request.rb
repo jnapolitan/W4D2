@@ -14,7 +14,7 @@ class CatRentalRequest < ApplicationRecord
     class_name: :Cat
     
   def overlapping_requests
-    self.cat.requests.where('? < end_date OR ? > start_date', self.start_date, self.end_date)
+    self.cat.requests.where.not('? > end_date OR ? < start_date', self.start_date, self.end_date)
   end
   
   def overlapping_approved_requests
@@ -23,7 +23,7 @@ class CatRentalRequest < ApplicationRecord
   
   def does_not_overlap_approved_request
      if overlapping_approved_requests.exists?
-       errors.add(:start_date, :end_date, "Date range overlaps approved request")
+       errors.add(:start_date, "Date range overlaps approved request")
      end
   end 
   
