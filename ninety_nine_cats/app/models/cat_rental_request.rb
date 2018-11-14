@@ -44,6 +44,7 @@ class CatRentalRequest < ApplicationRecord
   
   def deny!
     self.status = 'DENIED'
+    self.save
   end
   
 end

@@ -7,6 +7,14 @@
   <li>Status: <%= request.status %><ul>
     <li>Start Date: <%= request.start_date %></li>
     <li>End Date: <%= request.end_date %></li>
+    <% if request.status == 'PENDING' %>
+    <form class="" action="index.html" method="post">
+      
+    </form>
+      <button type="button" value="Approve">Approval</button>
+      <button type="button" value="DENY">DENIED >:|</button>
+    <% end %>
+
   </ul></li>
   <br>
 <% end %>
