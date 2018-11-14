@@ -1,2 +1,15 @@
 <h1>Here's a special cat</h1>
 <%= render 'cat', cat: @cat %>
+
+<h3>Upcoming reservations:</h3>
+<ul>
+<% @cat.requests.each do |request| %>
+  <li>Status: <%= request.status %><ul>
+    <li>Start Date: <%= request.start_date %></li>
+    <li>End Date: <%= request.end_date %></li>
+  </ul></li>
+  <br>
+<% end %>
+</ul>
+  
+ 
