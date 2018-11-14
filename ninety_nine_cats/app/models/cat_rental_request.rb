@@ -35,15 +35,15 @@ class CatRentalRequest < ApplicationRecord
     CatRentalRequest.transaction do
       if self.save
         self.status = 'APPROVED'
-        self.deny!
+        overlapping_pending_requests.each do |request|
+          request.deny!
+        end
       end
     end
   end
   
   def deny!
-    overlapping_pending_requests.each do |request|
-      request.status = 'DENIED'
-    end
+    self.status = 'DENIED'
   end
   
 end
